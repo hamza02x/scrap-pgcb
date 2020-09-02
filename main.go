@@ -104,7 +104,7 @@ func csv() {
 			continue
 		}
 		date := timify(d.Year) + "/" + timify(d.Month) + "/" + timify(d.Day)
-		out += date + " " + strings.ReplaceAll(timeFormat(d.Time), "24:00", "00:00") + "," + d.Load + "\n"
+		out += date + "," + strings.ReplaceAll(timeFormat(d.Time), "24:00", "00:00") + "," + d.Load + "\n"
 	}
 
 	hel.StrToFile(outfile, out)
@@ -252,7 +252,7 @@ func dateReverse(date string, page string) (year int, month int, day int, err er
 
 func timify(v int) string {
 	s := strconv.Itoa(v)
-	if len(s) == 0 {
+	if len(s) == 1 {
 		return "0" + s
 	}
 	return s
