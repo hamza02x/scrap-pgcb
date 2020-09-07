@@ -89,7 +89,7 @@ func csv() {
 
 	db.Model(&xData{}).Count(&rowsCount)
 
-	q := db.Where("(year >= ? || year <= ?) AND (month >= ? AND month <= ?)", minYear, maxYear, minMonth, maxMonth)
+	q := db.Where("(year >= ? AND year <= ?) AND (month >= ? AND month <= ?)", minYear, maxYear, minMonth, maxMonth)
 
 	sortStr := "year " + sortBy + ", month " + sortBy + ", day asc, time"
 
@@ -97,7 +97,7 @@ func csv() {
 
 	hel.Pl("Total rows", rowsCount)
 
-	var out = "Date,Load\n"
+	var out = "Date,Time,Load\n"
 
 	for _, d := range datas {
 		if strings.Contains(d.Time, ":30") {
